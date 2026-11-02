@@ -1,0 +1,626 @@
+{
+  "id": 20261029,
+  "name": "Lance 的 GKD 订阅",
+  "version": 11,
+  "author": "Lance",
+  "updateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.json5",
+  "checkUpdateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.version.json5",
+  "categories": [],
+  "globalGroups": [],
+  "apps": [
+    {
+      "id": "com.baidu.tieba",
+      "name": "百度贴吧",
+      "groups": [
+        {
+          "key": 0,
+          "name": "首页-推荐-黑名单贴吧",
+          "activityIds": [
+            "com.baidu.tieba.tblauncher.MainTabActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "action": "click",
+              "matches": [
+                "@ImageView <2 LinearLayout <4 RelativeLayout > LinearLayout > LinearLayout > [text*=\"鸣潮\"]"
+              ],
+              "fastQuery": true
+            },
+            {
+              "key": 50,
+              "name": "点击不喜欢",
+              "preKeys": [
+                0
+              ],
+              "matches": [
+                "@CheckBox[text=\"不喜欢\"]"
+              ],
+              "fastQuery": true
+            }
+          ],
+          "enable": true
+        }
+      ]
+    },
+    {
+      "id": "com.dragon.read",
+      "name": "番茄免费小说",
+      "groups": [
+        {
+          "key": 0,
+          "name": "局部广告-阅读-卡片广告",
+          "desc": "点击X",
+          "enable": true,
+          "activityIds": [
+            ".reader.ui.ReaderActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "name": "底部卡片广告-text 匹配",
+              "anyMatches": [
+                "@View[index=0] +5 View > TextView[text=\"免费阅读\"  || text=\"查看详情\" || text=\"立即阅读\" ||text=\"立即下载\"||text=\"立即参加\" ||text=\"点击阅读\"||text=\"微信试玩\"||text=\"立即抢购\"]",
+                "@ImageView < ViewGroup <3 ViewGroup[left=0][height=360][index=0][childCount>1]"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "底部卡片广告-view 匹配",
+              "anyMatches": [
+                "@ImageView < ViewGroup <3 ViewGroup[left=0][height=360][index=0][childCount>1]"
+              ]
+            },
+            {
+              "key": 50,
+              "name": "点击关闭此广告",
+              "preKeys": [
+                1
+              ],
+              "matches": [
+                "[text=\"关闭此广告\"]"
+              ],
+              "actionDelay": 100
+            }
+          ]
+        },
+        {
+          "key": 1,
+          "name": "局部广告-阅读-整页广告",
+          "desc": "反馈、关闭或滑走",
+          "enable": true,
+          "activityIds": [
+            ".reader.ui.ReaderActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "name": "有关闭按钮-反馈",
+              "position": {
+                "left": "width * 0.8",
+                "top": "height * 0.5"
+              },
+              "matches": [
+                "@ViewGroup[index=0][childCount=0][width>1000] <<n ViewGroup -n ViewGroup > ViewGroup > FrameLayout > FrameLayout > FrameLayout > FrameLayout > [vid=\"ttlive_player_render_view\"][visibleToUser=true]"
+              ],
+              "activityIds": [
+                ".reader.ui.ReaderActivity"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "无关闭按钮-反馈",
+              "matches": [
+                "@ViewGroup[index=0][childCount=0][width<200] <<n ViewGroup -n ViewGroup > ViewGroup > FrameLayout > FrameLayout > FrameLayout > FrameLayout > [vid=\"ttlive_player_render_view\"][visibleToUser=true]"
+              ],
+              "activityIds": [
+                ".reader.ui.ReaderActivity"
+              ]
+            },
+            {
+              "key": 2,
+              "name": "图片广告-点击右下方",
+              "position": {
+                "x": "screenWidth*0.95",
+                "y": "screenHeight*0.95"
+              },
+              "matches": [
+                "[text=\"免费看剧\" || text =\"收藏\" || text=\"点击关闭广告并退出小说\"][visibleToUser=true]"
+              ],
+              "excludeMatches": [
+                "[vid=\"ttlive_player_render_view\"]"
+              ],
+              "actionDelay": 100,
+              "activityIds": [
+                ".reader.ui.ReaderActivity"
+              ]
+            },
+            {
+              "key": 3,
+              "name": "直播广告-点击右下方",
+              "position": {
+                "x": "screenWidth*0.95",
+                "y": "screenHeight*0.95"
+              },
+              "matches": [
+                "@ImageView[vid=null][visibleToUser=true][width>1000][height>1000]"
+              ],
+              "excludeMatches": [
+                "@ViewGroup[index=0][childCount=0][width>1000] <<n ViewGroup -n ViewGroup > ViewGroup > FrameLayout > FrameLayout > FrameLayout > FrameLayout > [vid=\"ttlive_player_render_view\"][visibleToUser=true]",
+                "@ViewGroup[index=0][childCount=0][width<200] <<n ViewGroup -n ViewGroup > ViewGroup > FrameLayout > FrameLayout > FrameLayout > FrameLayout > [vid=\"ttlive_player_render_view\"][visibleToUser=true]"
+              ],
+              "actionDelay": 100,
+              "activityIds": [
+                ".reader.ui.ReaderActivity"
+              ]
+            },
+            {
+              "key": 50,
+              "name": "点击不感兴趣",
+              "preKeys": [
+                0,
+                1
+              ],
+              "matches": [
+                "[text=\"不感兴趣\"]"
+              ],
+              "actionDelay": 100
+            }
+          ]
+        },
+        {
+          "key": 2,
+          "name": "弹出对话框",
+          "desc": "点击取消",
+          "enable": true,
+          "rules": [
+            {
+              "key": 0,
+              "name": "点评此书-点击取消",
+              "matches": [
+                "@[text=\"取消\"] -n [text=\"点评此书\"]"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "添加到主屏幕-点击取消",
+              "matches": [
+                "@[text=\"取消\"] < LinearLayout -n [text=\"添加到主屏幕\"]"
+              ]
+            },
+            {
+              "key": 2,
+              "name": "开启推送提醒-点击取消",
+              "matches": [
+                "@[text=\"取消\"] < LinearLayout -n [text=\"开启推送提醒\"]"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 3,
+          "name": "局部广告-阅读-内文视频广告",
+          "desc": "点击本书不再展示",
+          "enable": true,
+          "activityIds": [
+            ".reader.ui.ReaderActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "name": "内文视频广告匹配",
+              "anyMatches": [
+                "@ImageView[visibleToUser=true] +2 ViewGroup > TextView[text=\"播放全集\"]"
+              ]
+            },
+            {
+              "key": 50,
+              "name": "点击本书不再展示",
+              "preKeys": [
+                0
+              ],
+              "matches": [
+                "TextView[text=\"本书不再展示\"]"
+              ],
+              "actionDelay": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.kmxs.reader",
+      "name": "七猫免费小说",
+      "groups": [
+        {
+          "key": 0,
+          "name": "底部广告-阅读页面广告",
+          "enable": true,
+          "fastQuery": true,
+          "matchRoot": true,
+          "activityIds": [
+            "org.geometerplus.android.fbreader.FBReader"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "name": "点击反馈或直接关闭",
+              "anyMatches": [
+                "[vid=\"iv_ad_feedback_copy\"][visibleToUser=true]",
+                "[vid=\"iv_ad_direct_close\"][visibleToUser=true]"
+              ],
+              "snapshotUrls": "https://i.gkd.li/i/1793500498896"
+            },
+            {
+              "key": 1,
+              "name": "点击不感兴趣",
+              "preKeys": [
+                0
+              ],
+              "activityIds": "com.qimao.qmad.feedback.ReportAdActivity",
+              "matches": [
+                "[vid=\"report_title\"][text=\"不感兴趣\"][visibleToUser=true]"
+              ],
+              "actionDelay": 100,
+              "snapshotUrls": "https://i.gkd.li/i/1793500504264"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.miHoYo.cloudgames.Nap",
+      "name": "云·绝区零",
+      "groups": [
+        {
+          "key": 1,
+          "name": "功能类-自动点击[使用流量进行游戏]",
+          "enable": true,
+          "actionMaximum": 1,
+          "rules": [
+            {
+              "matches": [
+                "[text=\"使用流量进行游戏\" || text=\"继续使用移动网络\"]"
+              ],
+              "fastQuery": true,
+              "activityIds": [
+                "com.mihoyo.cloudgame.main.MiHoYoCloudMainActivity",
+                "com.mihoyo.cloudgame.ui.SplashActivity"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.phoenix.read",
+      "name": "红果免费短剧",
+      "groups": [
+        {
+          "key": 0,
+          "name": "功能类-自动上滑继续看短剧",
+          "desc": "检测到广告结束页的上滑箭头或商城落地页后，自动向上滑动",
+          "enable": true,
+          "fastQuery": true,
+          "actionCd": 4000,
+          "rules": [
+            {
+              "key": 0,
+              "name": "自动上滑",
+              "activityIds": "com.dragon.read.pages.main.MainFragmentActivity",
+              "matches": "[vid=\"ay1\"] > FrameLayout > ViewGroup > ImageView[visibleToUser=true]",
+              "action": "swipe",
+              "swipeArg": {
+                "start": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight*0.8"
+                },
+                "end": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight*0.2"
+                },
+                "duration": 300
+              },
+              "snapshotUrls": "https://i.gkd.li/i/1793277842263"
+            },
+            {
+              "key": 1,
+              "name": "自动上滑-广告落地页",
+              "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+              "matches": "[desc*=\"商城好物\"][visibleToUser=true]",
+              "action": "swipe",
+              "swipeArg": {
+                "start": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight*0.8"
+                },
+                "end": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight*0.2"
+                },
+                "duration": 300
+              },
+              "snapshotUrls": "https://i.gkd.li/i/1793359670547"
+            },
+            {
+              "key": 2,
+              "name": "自动上滑-直播广告",
+              "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+              "matches": "TextureView[vid=\"ttlive_player_render_view\"][visibleToUser=true]",
+              "action": "swipe",
+              "swipeArg": {
+                "start": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight*0.8"
+                },
+                "end": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight*0.2"
+                },
+                "duration": 300
+              },
+              "snapshotUrls": "https://i.gkd.li/i/1793372415873"
+            }
+          ]
+        },
+        {
+          "key": 1,
+          "name": "功能类-关闭视频广告（不感兴趣）",
+          "desc": "视频广告页先点右上角广告标记，再在我不想看弹窗中点不感兴趣，自动关闭广告",
+          "enable": true,
+          "fastQuery": true,
+          "actionCd": 1000,
+          "rules": [
+            {
+              "key": 0,
+              "name": "点击右上角广告标记",
+              "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+              "matches": "[desc=\"广告\"][visibleToUser=true]",
+              "action": "click",
+              "snapshotUrls": "https://i.gkd.li/i/1793378651383"
+            },
+            {
+              "key": 1,
+              "name": "点击不感兴趣",
+              "preKeys": [
+                0
+              ],
+              "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+              "matches": "TextView[text=\"不感兴趣\"][visibleToUser=true]",
+              "action": "click",
+              "actionDelay": 100,
+              "snapshotUrls": "https://i.gkd.li/i/1793378658823"
+            }
+          ]
+        },
+        {
+          "key": 2,
+          "name": "功能类-关闭游戏广告（不喜欢该游戏）",
+          "desc": "游戏广告页先点右上角三点按钮，再在底部弹窗中点不喜欢该游戏，自动关闭广告",
+          "enable": true,
+          "fastQuery": true,
+          "actionCd": 1000,
+          "rules": [
+            {
+              "key": 0,
+              "name": "点击右上角三点按钮",
+              "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+              "matches": "[vid=\"ay1\"] > FrameLayout > ViewGroup > ViewGroup > ViewGroup[index=1][childCount=1] > ViewGroup[visibleToUser=true]",
+              "action": "click",
+              "snapshotUrls": "https://i.gkd.li/i/1793407161394"
+            },
+            {
+              "key": 1,
+              "name": "点击不喜欢该游戏",
+              "preKeys": [
+                0
+              ],
+              "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+              "matches": "@ViewGroup[clickable=true][visibleToUser=true] > TextView[text=\"不喜欢该游戏\"][visibleToUser=true]",
+              "action": "click",
+              "actionDelay": 100,
+              "snapshotUrls": "https://i.gkd.li/i/1793407166765"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.qinlin.edoor",
+      "name": "亲邻开门",
+      "groups": [
+        {
+          "key": 0,
+          "name": "开门广告",
+          "desc": "点击关闭",
+          "enable": true,
+          "fastQuery": true,
+          "activityIds": [
+            "com.qinlin.edoor.MainActivity"
+          ],
+          "rules": [
+            {
+              "matches": [
+                "@ImageView[id=\"com.wangmai.allmodules:id/wm_pop_pic_close\"]"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 1,
+          "name": "顶部广告",
+          "desc": "点击关闭",
+          "enable": true,
+          "fastQuery": true,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "activityIds": [
+            "com.qinlin.edoor.MainActivity"
+          ],
+          "rules": [
+            {
+              "matches": [
+                "[vid=\"ad_close\"][visibleToUser=true]"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.sina.weibo",
+      "name": "微博",
+      "groups": [
+        {
+          "key": 0,
+          "name": "作品管理-全部",
+          "desc": "自动删除作品",
+          "enable": true,
+          "activityIds": [
+            "com.sina.weibo.video.ManageCardListActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "position": {
+                "left": "width * 0.95",
+                "top": "height * 0.5"
+              },
+              "matches": [
+                "@[vid=\"mblogHeadtitle\"] < LinearLayout < FrameLayout < LinearLayout < RelativeLayout <3 [vid=\"lv_content\"]"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "点击删除",
+              "matches": [
+                "[text=\"删除\"]"
+              ],
+              "actionDelay": 200
+            },
+            {
+              "key": 2,
+              "name": "点击确定",
+              "preKeys": [
+                1
+              ],
+              "matches": [
+                "[text=\"确定\"]"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 1,
+          "name": "微博-全部",
+          "desc": "自动删除微博",
+          "enable": true,
+          "activityIds": [
+            "com.sina.weibo.flowbusiness.commonpage.FlowCommonPageActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "position": {
+                "left": "width * 0.95",
+                "top": "height * 0.1"
+              },
+              "matches": [
+                "@[vid=\"mblogHeadtitle\"] < LinearLayout < FrameLayout < LinearLayout <5 [vid=\"view_recycler\"]"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "点击删除",
+              "anyMatches": [
+                "[text=\"删除\"]",
+                "[text=\"取消快转\"]"
+              ],
+              "actionDelay": 200
+            },
+            {
+              "key": 2,
+              "name": "点击确定",
+              "preKeys": [
+                1
+              ],
+              "matches": [
+                "[text=\"确定\"]"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.tencent.qqmusic",
+      "name": "QQ音乐",
+      "groups": [
+        {
+          "key": 0,
+          "name": "切回/启动全场景开屏跳过",
+          "enable": true,
+          "fastQuery": true,
+          "actionMaximum": 1,
+          "matchTime": 10000,
+          "resetMatch": "activity",
+          "activityIds": [],
+          "rules": [
+            {
+              "matches": [
+                "@TextView[text*=\"跳过\"][visibleToUser=true]",
+                "@TextView[text*=\"秒跳过\"][visibleToUser=true]",
+                "@TextView[text*=\"关闭\"][visibleToUser=true]",
+                "@ImageView[desc=\"关闭\"][visibleToUser=true]",
+                "@TextView[text=\"×\"][visibleToUser=true]"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.tyg.tygsmart",
+      "name": "桃园谷",
+      "groups": [
+        {
+          "key": 1,
+          "name": "顶部广告",
+          "desc": "点击关闭",
+          "enable": true,
+          "fastQuery": true,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "activityIds": [
+            "com.tyg.tygsmart.ui.MainActivity"
+          ],
+          "rules": [
+            {
+              "matches": [
+                "@ImageView[visibleToUser=true] < FrameLayout <3 FrameLayout <2 FrameLayout <2 FrameLayout < FrameLayout < FrameLayout < LinearLayout < FrameLayout < FrameLayout < [vid=\"auto_pager\"]"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 0,
+          "name": "开门广告",
+          "desc": "点击关闭",
+          "enable": true,
+          "fastQuery": true,
+          "activityIds": [
+            "com.tyg.tygsmart.ui.MainActivity",
+            "com.windmill.sdk.widget.InterstitialView_4012003"
+          ],
+          "rules": [
+            {
+              "matches": [
+                "[vid=\"tobid_interstitial_skip_ll\"][visibleToUser=true]"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
