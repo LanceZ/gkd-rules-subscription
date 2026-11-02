@@ -1,7 +1,7 @@
 {
   "id": 20261029,
   "name": "Lance 的 GKD 订阅",
-  "version": 11,
+  "version": 12,
   "author": "Lance",
   "updateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.json5",
   "checkUpdateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.version.json5",
@@ -426,48 +426,6 @@
       ]
     },
     {
-      "id": "com.qinlin.edoor",
-      "name": "亲邻开门",
-      "groups": [
-        {
-          "key": 0,
-          "name": "开门广告",
-          "desc": "点击关闭",
-          "enable": true,
-          "fastQuery": true,
-          "activityIds": [
-            "com.qinlin.edoor.MainActivity"
-          ],
-          "rules": [
-            {
-              "matches": [
-                "@ImageView[id=\"com.wangmai.allmodules:id/wm_pop_pic_close\"]"
-              ]
-            }
-          ]
-        },
-        {
-          "key": 1,
-          "name": "顶部广告",
-          "desc": "点击关闭",
-          "enable": true,
-          "fastQuery": true,
-          "actionMaximum": 1,
-          "resetMatch": "app",
-          "activityIds": [
-            "com.qinlin.edoor.MainActivity"
-          ],
-          "rules": [
-            {
-              "matches": [
-                "[vid=\"ad_close\"][visibleToUser=true]"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "com.sina.weibo",
       "name": "微博",
       "groups": [
@@ -573,49 +531,6 @@
                 "@TextView[text*=\"关闭\"][visibleToUser=true]",
                 "@ImageView[desc=\"关闭\"][visibleToUser=true]",
                 "@TextView[text=\"×\"][visibleToUser=true]"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "com.tyg.tygsmart",
-      "name": "桃园谷",
-      "groups": [
-        {
-          "key": 1,
-          "name": "顶部广告",
-          "desc": "点击关闭",
-          "enable": true,
-          "fastQuery": true,
-          "actionMaximum": 1,
-          "resetMatch": "app",
-          "activityIds": [
-            "com.tyg.tygsmart.ui.MainActivity"
-          ],
-          "rules": [
-            {
-              "matches": [
-                "@ImageView[visibleToUser=true] < FrameLayout <3 FrameLayout <2 FrameLayout <2 FrameLayout < FrameLayout < FrameLayout < LinearLayout < FrameLayout < FrameLayout < [vid=\"auto_pager\"]"
-              ]
-            }
-          ]
-        },
-        {
-          "key": 0,
-          "name": "开门广告",
-          "desc": "点击关闭",
-          "enable": true,
-          "fastQuery": true,
-          "activityIds": [
-            "com.tyg.tygsmart.ui.MainActivity",
-            "com.windmill.sdk.widget.InterstitialView_4012003"
-          ],
-          "rules": [
-            {
-              "matches": [
-                "[vid=\"tobid_interstitial_skip_ll\"][visibleToUser=true]"
               ]
             }
           ]
