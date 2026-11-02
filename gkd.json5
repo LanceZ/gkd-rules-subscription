@@ -1,7 +1,7 @@
 {
   "id": 20261029,
   "name": "Lance 的 GKD 订阅",
-  "version": 14,
+  "version": 15,
   "author": "Lance",
   "updateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.json5",
   "checkUpdateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.version.json5",
@@ -234,15 +234,10 @@
       "groups": [
         {
           "key": 0,
-          "name": "底部广告-阅读/段评页面广告",
+          "name": "底部广告",
           "enable": true,
           "fastQuery": true,
           "matchRoot": true,
-          "activityIds": [
-            "org.geometerplus.android.fbreader.FBReader",
-            "com.qimao.qmbook.comment.readercomment.view.NewParaCommentListActivity",
-            "com.qimao.qmad.splash.LoadingBackgroundActivity"
-          ],
           "rules": [
             {
               "key": 0,
