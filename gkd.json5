@@ -1,7 +1,7 @@
 {
   "id": 20261029,
   "name": "Lance 的 GKD 订阅",
-  "version": 13,
+  "version": 14,
   "author": "Lance",
   "updateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.json5",
   "checkUpdateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.version.json5",
@@ -240,7 +240,8 @@
           "matchRoot": true,
           "activityIds": [
             "org.geometerplus.android.fbreader.FBReader",
-            "com.qimao.qmbook.comment.readercomment.view.NewParaCommentListActivity"
+            "com.qimao.qmbook.comment.readercomment.view.NewParaCommentListActivity",
+            "com.qimao.qmad.splash.LoadingBackgroundActivity"
           ],
           "rules": [
             {
@@ -252,7 +253,8 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/1793500498896",
-                "https://i.gkd.li/i/1793610942935"
+                "https://i.gkd.li/i/1793610942935",
+                "https://i.gkd.li/i/1793611599495"
               ]
             },
             {
