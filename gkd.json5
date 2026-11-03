@@ -1,7 +1,7 @@
 {
   "id": 20261029,
   "name": "Lance 的 GKD 订阅",
-  "version": 15,
+  "version": 16,
   "author": "Lance",
   "updateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.json5",
   "checkUpdateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.version.json5",
@@ -327,7 +327,10 @@
             {
               "key": 1,
               "name": "自动上滑-广告落地页",
-              "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+              "activityIds": [
+                "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+                "com.dragon.read.pages.main.MainFragmentActivity"
+              ],
               "matches": "[desc*=\"商城好物\"][visibleToUser=true]",
               "action": "swipe",
               "swipeArg": {
@@ -341,7 +344,10 @@
                 },
                 "duration": 300
               },
-              "snapshotUrls": "https://i.gkd.li/i/1793359670547"
+              "snapshotUrls": [
+                "https://i.gkd.li/i/1793359670547",
+                "https://i.gkd.li/i/1793716156925"
+              ]
             },
             {
               "key": 2,
