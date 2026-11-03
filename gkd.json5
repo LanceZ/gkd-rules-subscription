@@ -1,7 +1,7 @@
 {
   "id": 20261029,
   "name": "Lance 的 GKD 订阅",
-  "version": 17,
+  "version": 18,
   "author": "Lance",
   "updateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.json5",
   "checkUpdateUrl": "https://raw.githubusercontent.com/LanceZ/gkd-rules-subscription/main/gkd.version.json5",
@@ -347,9 +347,10 @@
             },
             {
               "key": 2,
-              "name": "自动上滑-直播广告",
+              "name": "自动上滑-无菜单直播广告",
               "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
               "matches": "TextureView[vid=\"ttlive_player_render_view\"][visibleToUser=true]",
+              "excludeMatches": "[vid=\"ay1\"] > FrameLayout > ViewGroup[index=2][childCount=2] > ViewGroup[index=0][childCount=0][left>1200][top<500][visibleToUser=true]",
               "action": "swipe",
               "swipeArg": {
                 "start": {
@@ -362,7 +363,10 @@
                 },
                 "duration": 300
               },
-              "snapshotUrls": "https://i.gkd.li/i/1793372415873"
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/1793372415873",
+                "https://i.gkd.li/i/1793724385351"
+              ]
             }
           ]
         },
@@ -389,7 +393,7 @@
                 0
               ],
               "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
-              "matches": "TextView[text=\"不感兴趣\"][visibleToUser=true]",
+              "matches": "TextView[vid=\"f7\"][text=\"不感兴趣\"][visibleToUser=true]",
               "action": "click",
               "actionDelay": 100,
               "snapshotUrls": "https://i.gkd.li/i/1793378658823"
@@ -423,6 +427,39 @@
               "action": "click",
               "actionDelay": 100,
               "snapshotUrls": "https://i.gkd.li/i/1793407166765"
+            }
+          ]
+        },
+        {
+          "key": 3,
+          "name": "功能类-关闭直播广告（不感兴趣）",
+          "desc": "带右上角三点的直播广告先打开菜单，再点不感兴趣；此类广告不再自动上滑",
+          "enable": true,
+          "fastQuery": true,
+          "actionCd": 1000,
+          "rules": [
+            {
+              "key": 0,
+              "name": "点击直播广告右上角三点",
+              "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+              "matches": "[vid=\"ay1\"] > FrameLayout > ViewGroup[index=2][childCount=2] > ViewGroup[index=0][childCount=0][left>1200][top<500][visibleToUser=true]",
+              "action": "click",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/1793372415873",
+                "https://i.gkd.li/i/1793724385351"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "点击直播广告不感兴趣",
+              "preKeys": [
+                0
+              ],
+              "activityIds": "com.dragon.read.component.shortvideo.impl.ShortSeriesActivity",
+              "matches": "@ViewGroup[clickable=true][visibleToUser=true] > TextView[vid=\"jwe\"][text=\"不感兴趣\"][visibleToUser=true]",
+              "action": "click",
+              "actionDelay": 100,
+              "snapshotUrls": "https://i.gkd.li/i/1793724410842"
             }
           ]
         }
